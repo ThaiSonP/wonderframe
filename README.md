@@ -2,7 +2,7 @@
 
 Description:
 
-This is a clone of Pinterest. It is an app that shows several images and allows users to catalog images they like.
+This is a clone of Pinterest. It is an app that shows several images and allows users to catalog images they like. This project will be completed within 2 weeks using redux/ react & express.
 
 
 Minimum Viable Product:
