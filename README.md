@@ -1,6 +1,7 @@
 # wonderframe
 
 Description:
+
 This is a clone of Pinterest. It is an app that shows several images and allows users to catalog images they like.
 
 Minimum Viable Product:
