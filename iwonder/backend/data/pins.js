@@ -13,7 +13,21 @@ const getAllPins = (req,res)=>{
   })
 }
 
+const getOnePin = (req,res)=>{
+  const id = req.params.id;
+  db.one('select * from pins where id = $1',id)
+  .then(result=>{
+    res.status(200)
+    .json({
+      message:'this is one pin',
+      body: result
+    })
+  }).catch(err=>{
+    console.log(err)
+  })
+}
 
 module.exports={
-  getAllPins
+  getAllPins,
+  getOnePin
 }

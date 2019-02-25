@@ -4,7 +4,7 @@ import '../css/pins.css'
 
 export const Pins = (pin)=>{
   // const {pins}=pin
-  console.log(pin.pin)
+  // console.log(pin.pin)
 
 const createPins =
 pin.pin.map(pins=>{

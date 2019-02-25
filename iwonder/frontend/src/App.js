@@ -5,12 +5,13 @@ import Editpro from './components/editpro.js'
 import Profile from './components/profile.js'
 import axios from 'axios'
 import Pins from './components/pins.js'
+import Onepin from './components/onepin.js'
 
 import './App.css';
 
 class App extends Component {
   state = {
-    userid:1,
+    userid:5,
     pins:[],
     user:[],
     search:'',
@@ -43,7 +44,15 @@ componentDidMount = ()=>{
   this.getPins()
 }
 
-
+createButtons = ()=>{
+  if(this.state.create){
+    return (
+    <p> this is a thing</p>
+    )
+  }else{
+    return null
+  }
+}
 
   render() {
     const {pins,user,create}=this.state
@@ -60,11 +69,19 @@ componentDidMount = ()=>{
               render={(props) => <Profile {...props} user={this.state.user} />}
               />
             <Route path ='/edit'
-              render={(props) => <Editpro {...props} user={this.state.user} />}
+              render={(props) => <Editpro
+                {...props}
+                user={this.state.user}
+                testbutton = {this.createButtons}
+                createButtons={this.createButtons}
+                create = {this.state.create}
+              />}
+              />
+            <Route path ='/pins/:id'
+              render={(props) => <Onepin {...props} pins={this.state.pins} />}
               />
           </Switch>
 
-          <button onClick={this.testbutton}>test button</button>
       </div>
     );
   }

@@ -1,10 +1,38 @@
-import React from 'react'
+import React,{Component} from 'react'
 import '../css/profile.css'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
-export const Profile = (user)=>{
-  const {name,bio,pic}=user.user
+class Profile extends Component{
+  constructor(props){
+    super(props)
+    this.state={
+      profileId:parseInt(Object.values(this.props.match.params)),
+      userInfo:[]
+    }
+  }
 
+  componentDidMount(){
+
+    const {profileId} = this.state
+
+    //we make a seperate axios call for indvidual pins
+    axios.get(`/users/${profileId}`)
+    .then(response=>{
+      this.setState({
+        userInfo:response.data.body
+      })
+    }).catch(err=>{
+      console.log(err)
+    })
+
+  }
+
+
+render(){
+  // console.log(this.props)
+  const {name,bio,pic}=this.state.userInfo
+  
   return (
     <>
     <div className = 'profile1'>
@@ -32,8 +60,9 @@ export const Profile = (user)=>{
       </div>
 
     </div>
-    </>
-  )
-}
 
+    </>
+    )
+  }
+}
 export default Profile
