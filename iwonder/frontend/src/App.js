@@ -6,6 +6,8 @@ import Profile from './components/profile.js'
 import axios from 'axios'
 import Pins from './components/pins.js'
 import Onepin from './components/onepin.js'
+import PostPin from './components/postpin.js'
+import PostBoards from './components/postboards.js'
 
 import './App.css';
 
@@ -15,7 +17,6 @@ class App extends Component {
     pins:[],
     user:[],
     search:'',
-    create:false
   }
 
 getPins = ()=>{
@@ -34,29 +35,18 @@ getPins = ()=>{
   })
 }
 
-testbutton =()=>{
-  this.setState({
-    create: !this.state.create
-  })
-}
-
 componentDidMount = ()=>{
   this.getPins()
 }
-
-createButtons = ()=>{
-  if(this.state.create){
-    return (
-    <p> this is a thing</p>
-    )
-  }else{
-    return null
-  }
+componentWillUnMount=()=>{
+  this.setState({
+    pins:null
+  })
+  debugger
 }
-
   render() {
-    const {pins,user,create}=this.state
-    // console.log(create)
+    // console.log(this.state)
+    const {pins,user}=this.state
     return (
       <div className="App">
 
@@ -73,12 +63,16 @@ createButtons = ()=>{
                 {...props}
                 user={this.state.user}
                 testbutton = {this.createButtons}
-                createButtons={this.createButtons}
-                create = {this.state.create}
               />}
               />
             <Route path ='/pins/:id'
               render={(props) => <Onepin {...props} pins={this.state.pins} />}
+              />
+            <Route path="/postpin"
+              render={(props)=><PostPin{...props} user={this.state.userid}/>}
+              />
+            <Route path="/postboard"
+              render={(props)=><PostBoards{...props} user={this.state.userid}/>}
               />
           </Switch>
 

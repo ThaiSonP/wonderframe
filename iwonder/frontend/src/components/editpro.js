@@ -7,12 +7,11 @@ class Editpro extends Component{
 constructor(props){
   super(props)
   this.state={
-    name:'',
-    password:'',
-    email:"",
-    bio:"",
-    pic:"",
-    test:""
+    name:null,
+    password:null,
+    email:null,
+    bio:null,
+    pic:null,
   }
 }
 
@@ -22,10 +21,9 @@ handleChange=(event)=>{
 }
 
 patchProfile=()=>{
-  const {name,password,email,bio,pic,test}=this.state
+  const {name,password,email,bio,pic}=this.state
   const id = this.props.user.id
 
-  if(Object.values(this.state)){
     axios.patch(`users/${id}`,{
       name: name,
       password:password,
@@ -39,9 +37,6 @@ patchProfile=()=>{
     }).catch(err=>{
       console.log(err)
     })
-  }else{
-    return "fill out form"
-  }
 }
 
 handleSubmit=(e)=>{
@@ -59,12 +54,24 @@ deleteUser=()=>{
   })
 }
 
-render(){
-  // console.log(this.props.user)
-  // console.log(Object.values(this.state))
+// componentDidMount(){
+//     const props = this.props.user;
+//     this.setState({
+//       name:props.name,
+//       password:props.password,
+//       email:props.email,
+//       bio:props.bio,
+//       pic:props.pic
+//   })
+// }
 
-  const info = this.props.user
-// console.log(info)
+render(){
+  //props updates in render when page loads but not on Monut
+  const id= this.props.user.id;
+  const info = this.props.user;
+  console.log(info)
+  console.log(Object.values(this.state))
+
   return(
     <div className='container1'>
       <div className = 'editContainer'>
@@ -113,7 +120,7 @@ render(){
 
             <div className="editfooter">
                 <input type='submit' value='Save settings' className='save'/>
-                <Link to={'/user/:id'}><button className='cancel'>Cancel</button></Link>
+                <Link to={`/user/${id}`}><button className='cancel'>Cancel</button></Link>
             </div>
 
           </form>

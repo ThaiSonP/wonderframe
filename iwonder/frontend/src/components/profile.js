@@ -2,13 +2,15 @@ import React,{Component} from 'react'
 import '../css/profile.css'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import Buttons from './buttons'
 
 class Profile extends Component{
   constructor(props){
     super(props)
     this.state={
       profileId:parseInt(Object.values(this.props.match.params)),
-      userInfo:[]
+      userInfo:[],
+      displayButton: false
     }
   }
 
@@ -28,18 +30,23 @@ class Profile extends Component{
 
   }
 
+  testbutton =()=>{
+    this.setState({
+      displayButton: !this.state.displayButton
+    })
+  }
 
 render(){
-  // console.log(this.props)
+  // console.log(this.state.displayButton)
   const {name,bio,pic}=this.state.userInfo
-  
+
   return (
     <>
     <div className = 'profile1'>
 
       <div className = 'header1'>
-        <button>Create Things</button>
-        <Link to='/edit'><button>Edit Profile</button> </Link>
+        <Buttons displayButton={this.state.displayButton} testbutton={this.testbutton}/>
+        <Link to='/edit'><button><img src='http://www.free-icons-download.net/images/pencil-symbol-icon-63234.png' alt=''/></button> </Link>
       </div>
 
       <div className = 'body1'>

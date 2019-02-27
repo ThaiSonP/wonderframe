@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import '../css/onepin.css'
-import Pins from './pins.js'
+// import Pins from './pins.js'
 
 class Onepin extends Component{
   constructor(props){
@@ -31,7 +31,7 @@ class Onepin extends Component{
   }
 
  render(){
-   const {pinId,pinInfo}=this.state
+   const {pinInfo}=this.state
    // console.log(pinInfo.user_id)
 
   return(

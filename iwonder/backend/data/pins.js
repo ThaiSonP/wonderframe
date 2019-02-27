@@ -27,7 +27,21 @@ const getOnePin = (req,res)=>{
   })
 }
 
+const postPin = (req,res)=>{
+  const body = req.body
+  db.none('INSERT INTO pins (user_id,image,title,board_id,description) VALUES (${user_id},${image},${title},${board_id},${description})',body)
+  .then(result=>{
+    res.status(200)
+    .json({
+      mesage:'post has been created'
+    })
+  }).catch(err=>{
+    console.log(err)
+  })
+}
+
 module.exports={
   getAllPins,
-  getOnePin
+  getOnePin,
+  postPin
 }
