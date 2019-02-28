@@ -42,7 +42,7 @@ componentDidMount = ()=>{
   // this._ismounted=true
 }
 componentWillUnmount=()=>{
-  // console.log("FUCKING TYSON IT WORKS")
+  // console.log("IT WORKS")
   this.setState({
     pins:null
   })
@@ -86,7 +86,7 @@ componentWillUnmount=()=>{
               render={(props)=><PostBoards{...props} user={this.state.userid}/>}
               />
           </Switch>
-          
+
       </div>
     );
   }
