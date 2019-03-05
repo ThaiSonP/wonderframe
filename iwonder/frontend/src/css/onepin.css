@@ -27,8 +27,7 @@
 }
 
 .pinimg img {
-  max-width: 496px;
-  max-height: 500px;
+  width: 496px
 }
 
 .pininfo a button{
